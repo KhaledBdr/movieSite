@@ -1,0 +1,73 @@
+<style>
+    .form-background {
+        background-image: linear-gradient(to bottom right , rgb(0, 141, 197),  gray ,darkgray , white);
+    }
+</style>
+<div class="flaud-container form-background mt-0 p-3 pb-lg-5">
+<div class="container mt-5 ">
+<form action="/movies/add" method="post" class="container fs-4" enctype="multipart/form-data">
+
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Movie Name</label>
+    <input type="text" class="form-control" id="exampleInputText1" name="name" <%if(data){%> value="<%=data.name%>" <%}%>>
+  </div>
+      <%  for( i =0 ; i < errors.length ; i++) {
+        if(errors[i].param == 'name'){ %> 
+    <div class="alert-danger p-2 text-center">
+          <%= errors[i].msg %>
+      </div>
+   <%    break }} %> 
+  
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Movie Image (optional)</label>
+    <input type="file" class="form-control" id="exampleInputText1" name="img">
+  </div>
+
+
+  <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Movie Year</label>
+    <input type="number" class="form-control" id="exampleInputText1" name = "year" <%if(data){%> value="<%=data.year%>" <%}%> >
+  </div>
+        <%  for( i =0 ; i < errors.length ; i++) {
+        if(errors[i].param == 'year'){ %> 
+    <div class="alert-danger p-2 text-center">
+          <%= errors[i].msg %>
+      </div>
+   <%    break }} %> 
+
+    <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Movie Evaluation</label>
+    <input type="text" class="form-control" id="exampleInputText1" name="evaluation" <%if(data){%> value="<%=data.evaluation%>" <%}%>>
+  </div>
+      <%  for( i =0 ; i < errors.length ; i++) {
+        if(errors[i].param == 'evaluation'){ %> 
+    <div class="alert-danger p-2 text-center">
+          <%= errors[i].msg %>
+      </div>
+   <%    break }} %> 
+
+    <div class="mb-3">
+    <label for="exampleInputText1" class="form-label">Author</label>
+    <input type="text" class="form-control" id="exampleInputText1" name="author"  <%if(data){%> value="<%=data.author%>" <%}%>>
+  </div>
+        <%  for( i =0 ; i < errors.length ; i++) {
+        if(errors[i].param == 'author'){ %> 
+    <div class="alert-danger p-2 text-center">
+          <%= errors[i].msg %>
+      </div>
+   <%    break }} %> 
+
+    <div class="mb-3">
+        <label  class="form-label">Category</label>
+        <select class="form-select" aria-label="Default select example" name="category">
+        
+            <option disabled selected>Category</option>
+            <option value="Action">Action</option>
+            <option value="Romantic">Romantic</option>
+        </select>
+</div>
+  
+  <button type="submit" class="btn btn-primary w-50 d-block m-auto"> Add </button>
+</form>
+</div>
+</div>

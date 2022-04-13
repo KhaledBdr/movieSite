@@ -1,0 +1,48 @@
+<div class="flaud-container">
+<form action="/users/Registeration" method="post" class="container pt-lg-5 pt-md-4 pt-sm-5 pt-xxl-5">
+    <h1 class="text-primary mb-4 mt-3 mt-lg-4"> Registeration Form</h1>
+
+    <div class="form-floating mb-3">
+        <input type="email" value="<% if(data){ %> <%=data.email %><%} %>" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" name="name" value="<% if(data){ %> <%=data.name %><%} %>" class="form-control" id="floatingInput" placeholder="Khaled Badr">
+        <label for="floatingInput">User Name</label>
+    </div>
+
+
+    <div class="form-floating mb-3">
+        <input type="password" name="password" value="<% if(data){ %> <%=data.password %><%} %>" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" name="confimPassword" value="<% if(data){ %> <%=data.confimPassword %><% } %>" class="form-control" id="floatingPassword" placeholder="confirm Password">
+        <label for="floatingPassword">confirm Password</label>
+    </div>
+    
+    <div class="form-floating mb-3">
+        <input type="text" name="forgetKey" value="<% if(data){ %> <%=data.forgetKey %><%} %>" class="form-control" id="floatingInput" placeholder="forgetKey">
+        <label for="floatingInput">forget Key</label>
+    </div>
+
+
+    <% if(errors){ %> 
+        <span class="alert alert-danger d-block text-center clearfix">
+            <% for(let i = 0 ; i < errors.length ; i++){ %>
+                <%= errors[i].message %> 
+                <% } %>  
+        </span>
+        <% } %> 
+    <button class="btn btn-success d-block m-auto w-50 mb-3" type="submit"> Sign up</button>
+</form>
+</div>
+
+<style>
+    .flaud-container{
+        background-image: linear-gradient(to top left , rgb(57, 57, 224) , gray , white);
+        padding-bottom: 50px;
+    }
+</style>

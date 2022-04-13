@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bolder fs-3 ls" href="/movies"><span class="text-primary">Egy</span><span class="text-danger">Flix</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if(isUser){ %> 
+        <li class="nav-item">
+          <a class="nav-link <% if(active === 'home') {%> active <% } %> " aria-current="page" href="/movies">Home</a>
+        </li>
+        <% }if(isAdmin){ %> 
+        <li class="nav-item">
+          <a class="nav-link <% if(active === 'add') {%> active <% } %>" href="/movies/add">Add movie</a>
+        </li>
+        <% }if(isUser == false){ %> 
+        
+        <li class="nav-item">
+          <a class="nav-link <% if(active === 'register') {%> active <% } %>" href="/users/Registeration"> Registeration</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <% if(active === 'login') {%> active <% } %>" href="/users/Login"> Login</a>
+        </li>
+        <% }else{ %> 
+        <li class="nav-item">
+          <a class="nav-link <% if(active === 'logout') {%> active <% } %>" href="/users/logout"> Log out</a>
+        </li>
+         
+      </ul>
+      <form action="/movies/name" method="get" class="d-flex">
+        <input class="form-control me-2" type="search" name="name" <% if(search){ %> value="<%=search.name%>" <% } %>   placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <% } %>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .ls{
+    letter-spacing: 3px;
+    word-spacing: 5px;
+  }
+  .active{
+    text-decoration: 8px underline blue;
+    padding-top: 5px;
+    font-weight: bolder;
+  }
+</style>

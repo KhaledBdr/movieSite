@@ -1,0 +1,20 @@
+<div class="flaud-container">
+<form class="container" method="post" action="/users/Login">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email" <% if (user){ %> value="<%=loginInfo.email%>" <% } %>    class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" <% if (user){ %> value="<%=loginInfo.password%>" <% } %>  class="form-control" id="exampleInputPassword1">
+  </div>
+  <% if(errors){ %>
+    <span class="alert alert-danger d-block w-50 m-auto text-center clearfix mb-3">
+        <%=errors %> 
+    </span>
+        <% } %>
+     
+  <button type="submit" class="btn btn-primary d-block m-auto w-25">Log in</button>
+</form>
+</div>

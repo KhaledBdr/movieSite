@@ -1,0 +1,86 @@
+<div class="container mt-4">
+    <form action="/movies/category" method="GET">
+      <select class="form-select" aria-label="Default select example" name="category">
+        <% if(!cat) {%>
+        <option value="/" selected >All</option>
+        <option value="Action" >Action</option>
+        <option value="Romantic">Romantic</option>
+        <% }else{ %> 
+        <option value="/" <%if(cat == '/'){%> Selected <%} %>  >All</option>
+        <option value="Action" <%if(cat == 'Action'){%> Selected <%} %>>Action</option>
+        <option value="Romantic" <%if(cat == 'Romantic'){%> Selected <%} %>>Romantic</option>
+          <% } %> 
+      </select>
+      <div class="d-grid gap-2 col-5 mx-auto">
+         <input class="btn btn-primary mt-2" type="submit" value="Filter">
+</div>
+    </form>
+</div>
+
+
+    <% if(movies.length !==0){ %> 
+      <% if(isAdmin){ %> 
+  <table class="table table-responsive table-bordered mt-5 ">
+   <thead class="table-info text-center text-danger">
+    <td>Name</td>
+    <td>Year</td>
+    <td>Author</td>
+    <td>Category</td>
+    <td>Evaluation</td> 
+    <td> Delete</td>
+    <td> Update</td>
+</thead >
+ <tbody class="text-center">
+    <% for(let m = 0 ; m< movies.length ; m++){ %> 
+       
+        <tr> 
+        <form action="/movies/update" method="post">
+    <td class="me-3 fw-bolder"><input type="text" name="name" value="<%= movies[m].name%>" ></td>
+    <td class="me-3 fw-bolder"><input type="text" name="year" value="<%= movies[m].year%>"></td>
+    <td class="me-3 fw-bolder"><input type="text"name="author" value="<%= movies[m].author%>"></td>
+    <td class="me-3 fw-bolder"><input type="text"name="category" value="<%= movies[m].category%>"> </td>
+    <td class="me-3 fw-bolder"><input type="text"name="evaluation" value="<%= movies[m].evaluation%>"> </td>
+    <td class="me-3 fw-bolder">
+        <input type="hidden" name="_id" value="<%= movies[m]._id  %>">
+        <input type="submit" formmethod="get" formaction="/movies/delete" class="btn btn-primary fw-bolder " value="Delete" >
+        </td>
+        <td class="me-3 fw-bolder"> 
+        <input type="hidden" name="_id" value="<%= movies[m]._id  %>">
+        <input type="submit" formaction="/movies/update" class="fw-bolder btn btn-info" value="Update">
+       </td>
+       </form>
+     </tr>
+ 
+        <% }%>
+   </tbody>
+</table>
+      <%}else{ %> 
+                <div class="row mb-5 justify-content-center">
+    <% for(let m = 0 ; m< movies.length ; m++){ %> 
+<div class="card mt-2 ms-sm-2 ms-md-2 col-10 col-sm-5 col-md-5 col-lg-3">
+  <img class="card-img" src="/<%= movies[m].img%>" alt="can't get image">
+  <div class="card-body">
+    <h5 class="card-title text-center text-uppercase"><%= movies[m].name  %> ( <%= movies[m].year  %> )</h5>
+    <p class="card-text"> 
+      Author : <span class="text-primary"><%= movies[m].author  %></span><br>
+      Category : <span class="text-primary"><%= movies[m].category  %></span><br>
+      Evaluation : <span class="text-primary"><%= movies[m].evaluation  %></span><br>
+    </p>
+    <a href="/movies/download/<%= movies[m]._id  %>" class="btn btn-primary pull-right">Download</a>
+  </div>
+</div>
+
+<% }%> </div>
+      
+
+       <% }} %> 
+
+
+  <%if(isAdmin){ if(errors){ %>
+    <span class="alert alert-danger d-block text-center clearfix">
+    <% for(let i =0 ; i< errors.details.length ; i++){ %> 
+        <%= errors.details[i].message  %> 
+    <% } %>
+    </span>
+    <%}} %> 
+</div>
